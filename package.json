@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "",
-    "start": ""
+    "build": "pnpm i --prefix backend && pnpm --filter frontend install && pnpm --filter frontend build",
+    "start": "pnpm --prefix backend run start"
   },
   "keywords": [],
   "author": "",

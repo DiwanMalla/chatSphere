@@ -1,5 +1,4 @@
 // components/SidebarSkeleton.jsx
-import React from "react";
 
 const SidebarSkeleton = () => {
   return (

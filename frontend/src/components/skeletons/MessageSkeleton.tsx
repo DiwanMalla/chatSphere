@@ -1,5 +1,4 @@
 // components/MessageSkeleton.jsx
-import React from "react";
 
 const MessageSkeleton = () => {
   return (
