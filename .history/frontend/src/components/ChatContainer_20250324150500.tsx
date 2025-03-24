@@ -123,7 +123,7 @@ const ChatContainer = () => {
                           <img
                             key={imgIndex}
                             src={url}
-                            className="max-w-full max-h-64 rounded-lg object-cover"
+                            className="max-w-full rounded-lg object-cover"
                             alt="Message"
                           />
                         ))}

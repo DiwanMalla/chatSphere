@@ -106,24 +106,18 @@ const ChatContainer = () => {
                   )}
 
                   {/* Message Bubble */}
-                  <div
-                    className={`max-w-xs md:max-w-md p-3 rounded-2xl shadow-sm ${
-                      msg.senderId === authUser._id
-                        ? "bg-teal-600 text-white rounded-br-none"
-                        : "bg-gray-700 text-gray-100 rounded-bl-none"
-                    }`}
-                  >
+                  <div className="bg-gray-800 p-3 rounded-lg max-w-md">
                     {/* Text Messages */}
-                    {msg.text && <p className="text-sm">{msg.text}</p>}
+                    {msg.text && <p className="text-white">{msg.text}</p>}
 
                     {/* Image Messages */}
                     {msg.images && msg.images.length > 0 && (
-                      <div className="mt-2 space-y-2">
+                      <div className="mt-2">
                         {msg.images.map((url, imgIndex) => (
                           <img
                             key={imgIndex}
                             src={url}
-                            className="max-w-full max-h-64 rounded-lg object-cover"
+                            className="max-w-full rounded-lg object-cover"
                             alt="Message"
                           />
                         ))}

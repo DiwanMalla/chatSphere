@@ -13,15 +13,14 @@ const ChatContainer = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (selectedUser?._id) {
-      getMessages(selectedUser._id);
-    }
-  }, [selectedUser, getMessages]);
+    getMessages(selectedUser._id);
+  }, [selectedUser._id, getMessages]);
 
   // Auto-scroll to the latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
   // Function to format date headers
   const formatDate = (dateString) => {
     const messageDate = new Date(dateString);
@@ -44,7 +43,7 @@ const ChatContainer = () => {
 
   // Group messages by date
   const groupedMessages = messages.reduce((acc, msg) => {
-    const msgDate = formatDate(msg.timestamp);
+    const msgDate = formatDate(msg.createdAt);
     if (!acc[msgDate]) acc[msgDate] = [];
     acc[msgDate].push(msg);
     return acc;
@@ -76,7 +75,7 @@ const ChatContainer = () => {
           Object.entries(groupedMessages).map(([date, msgs], index) => (
             <div key={index}>
               {/* Date Separator */}
-              <div className="text-center text-gray-400 text-sm my-4">
+              <div className="text-center text-gray-400 text-sm my-3">
                 <span className="px-3 py-1 bg-gray-800 rounded-md">{date}</span>
               </div>
 
@@ -96,34 +95,28 @@ const ChatContainer = () => {
                       {selectedUser.profilePicture ? (
                         <img
                           src={selectedUser.profilePicture}
-                          className="w-full h-full rounded-full object-cover"
+                          className="w-full h-full rounded-full"
                           alt="User"
                         />
                       ) : (
-                        <User className="w-5 h-5 text-white" />
+                        <User className="w-10 h-10 text-gray-400" />
                       )}
                     </div>
                   )}
 
                   {/* Message Bubble */}
-                  <div
-                    className={`max-w-xs md:max-w-md p-3 rounded-2xl shadow-sm ${
-                      msg.senderId === authUser._id
-                        ? "bg-teal-600 text-white rounded-br-none"
-                        : "bg-gray-700 text-gray-100 rounded-bl-none"
-                    }`}
-                  >
+                  <div className="bg-gray-800 p-3 rounded-lg max-w-md">
                     {/* Text Messages */}
-                    {msg.text && <p className="text-sm">{msg.text}</p>}
+                    {msg.text && <p className="text-white">{msg.text}</p>}
 
                     {/* Image Messages */}
                     {msg.images && msg.images.length > 0 && (
-                      <div className="mt-2 space-y-2">
+                      <div className="mt-2">
                         {msg.images.map((url, imgIndex) => (
                           <img
                             key={imgIndex}
                             src={url}
-                            className="max-w-full max-h-64 rounded-lg object-cover"
+                            className="max-w-full rounded-lg object-cover"
                             alt="Message"
                           />
                         ))}
